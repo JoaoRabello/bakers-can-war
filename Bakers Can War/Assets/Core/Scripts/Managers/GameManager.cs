@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Match> _placeholderMatches = new List<Match>();
 
     [SerializeField] private Table _table;
+    [SerializeField] private AudioSource _matchSource;
+    [SerializeField] private AudioSource _hmmBoloSource;
 
     private void Awake()
     {
@@ -81,6 +83,14 @@ public class GameManager : MonoBehaviour
         foreach (var match in combo.Matches)
         {
             AddSliceToIngredient(match);
+            if (match.ToppingAmount >= 5)
+            {
+                _hmmBoloSource.Play();
+            }
+            else
+            {
+                _matchSource.Play();
+            }
         }
     }
 

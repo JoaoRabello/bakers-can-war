@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b8d51634df1b1ba4db45633985ddddef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 420884693c779b74681e470a899afae1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,14 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43965b47dc63de46a333a620e1db751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingState: 1
+  willMatch: 0
   column: 0
   row: 0
   targetX: 0
   targetY: 0
   isMatched: 0
+  previousColumn: 0
+  previousRow: 0
   toppingMatchType: none
   toppingMatchLength: 0
   swipeAngle: 0
+  swipeResist: 2
 --- !u!58 &7888449518286033268
 CircleCollider2D:
   m_ObjectHideFlags: 0
