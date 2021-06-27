@@ -14,6 +14,8 @@ public class Board : MonoBehaviour
     public int width = 7;
     public int offSet = 20;
     //public float distanceMultiplier = 1.5f;
+    public Dictionary<string, int> matchedDict = new Dictionary<string, int>();
+    public string[] toppingsList;
     public GameObject prefab;
     public GameObject[] toppings;
 
@@ -22,6 +24,7 @@ public class Board : MonoBehaviour
     private FindMatches findMatches;
     void Start()
     {   
+        ResetMatchedDict();
         findMatches = FindObjectOfType<FindMatches>();
         // allTiles = new BackgroundTile[width, height];
         allToppings = new GameObject[width, height];
@@ -90,6 +93,7 @@ public class Board : MonoBehaviour
     }
 
     public void DestroyMatches(){
+        CalculateAndSend();
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 if(allToppings[i, j] != null){
@@ -98,6 +102,59 @@ public class Board : MonoBehaviour
             }
         }
         StartCoroutine(DecreaseRowCo());
+    }
+
+    private void CalculateAndSend(){
+        for(int i = 0; i < findMatches.currentMatches.Count; i++){
+            matchedDict[findMatches.currentMatches[i].tag]+=1;
+        }
+        for(int i = 0; i < toppingsList.Length; i++){
+            if( matchedDict[toppingsList[i]] == 0 ){
+                continue;
+            }
+            else if( matchedDict[toppingsList[i]] == 3 ){
+                SendToScore(matchedDict[toppingsList[i]], 3);
+            }
+            else if( matchedDict[toppingsList[i]] == 4 ){
+                SendToScore(matchedDict[toppingsList[i]], 4);
+            }
+            else if( matchedDict[toppingsList[i]] == 5 ){
+                SendToScore(matchedDict[toppingsList[i]], 5);
+            }
+            else if( matchedDict[toppingsList[i]] == 6 ){
+                SendToScore(matchedDict[toppingsList[i]], 3);
+                SendToScore(matchedDict[toppingsList[i]], 3);
+            }
+            else if( matchedDict[toppingsList[i]] == 7 ){
+                SendToScore(matchedDict[toppingsList[i]], 4);
+                SendToScore(matchedDict[toppingsList[i]], 3);
+            }
+            else if( matchedDict[toppingsList[i]] == 8 ){
+                SendToScore(matchedDict[toppingsList[i]], 4);
+                SendToScore(matchedDict[toppingsList[i]], 4);
+            }
+            else if( matchedDict[toppingsList[i]] == 9 ){
+                SendToScore(matchedDict[toppingsList[i]], 5);
+                SendToScore(matchedDict[toppingsList[i]], 4);
+            }
+            else if( matchedDict[toppingsList[i]] == 10 ){
+                SendToScore(matchedDict[toppingsList[i]], 5);
+                SendToScore(matchedDict[toppingsList[i]], 5);
+            }
+            else{
+                SendToScore(matchedDict[toppingsList[i]], 0);
+            }
+        }
+        ResetMatchedDict();
+    }
+    private void SendToScore(string topping, int toppingValue){
+
+    }
+    private void ResetMatchedDict(){
+        matchedDict = new Dictionary<string, int>();
+        for(int i = 0; i < toppingsList.Length; i++){
+            matchedDict.Add(toppingsList[i], 0);  
+        }
     }
     private IEnumerator DecreaseRowCo(){
         int nullCount = 0;
@@ -117,7 +174,6 @@ public class Board : MonoBehaviour
         yield return new WaitForSeconds(.4f);
         StartCoroutine(FillBoardCo());
     }
-
     private void RefillBoard(){
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){

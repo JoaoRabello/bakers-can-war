@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovingState{
+    moving,
+    idle
+}
+
+
 public class Topping : MonoBehaviour
-{
+{   public MovingState movingState = MovingState.idle;
+    private bool movingX = false;
+    private bool movingY = false;
+    public bool willMatch = false;
     public int column;
     public int row;
     public int targetX;
@@ -39,45 +48,62 @@ public class Topping : MonoBehaviour
         if (isMatched){
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
             mySprite.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+            StartCoroutine(MatchedVanish());
         }
         targetX = column;
         targetY = row;
         if (Mathf.Abs(targetX - transform.position.x) > .1){
+            movingState = MovingState.moving;
+            movingX = true;
             temPosition = new Vector3(targetX, transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, temPosition, .06f);
+            transform.position = Vector3.Lerp(transform.position, temPosition, Time.deltaTime* 3.8f);
             if(board.allToppings[column, row]!= this.gameObject){
                 board.allToppings[column, row] = this.gameObject;
             }
             findMatches.FindAllMatches();
         }
         else{
+            movingX = false;
             temPosition = new Vector3(targetX, transform.position.y, transform.position.z);
             transform.position = temPosition;
         }
         if (Mathf.Abs(targetY - transform.position.y) > .1){
+            movingState = MovingState.moving;
+            movingY = true;
             temPosition = new Vector3(transform.position.x, targetY, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, temPosition, .06f);
+            transform.position = Vector3.Lerp(transform.position, temPosition, Time.deltaTime* 3.8f);
             if(board.allToppings[column, row]!= this.gameObject){
                 board.allToppings[column, row] = this.gameObject;
             }
             findMatches.FindAllMatches();
         }
         else{
+            movingY = false;
             temPosition = new Vector3(transform.position.x, targetY, transform.position.z);
             transform.position = temPosition;
         }
+        if(!movingX && !movingY){
+            movingState = MovingState.idle;
+        }
+    }
+
+    public IEnumerator MatchedVanish(){
+        yield return new WaitForSeconds(.2f);
+        board.DestroyMatches();
     }
 
     public IEnumerator CheckMoveCo(){
         yield return new WaitForSeconds(.3f);
         if(otherTopping != null){
             if(!isMatched && !otherTopping.GetComponent<Topping>().isMatched){
-                otherTopping.GetComponent<Topping>().row = row;
-                otherTopping.GetComponent<Topping>().column = column;
-                row = previousRow;
-                column = previousColumn;
-                yield return new WaitForSeconds(.5f);
-                board.currentState = GameState.move;
+                if(!willMatch && !otherTopping.GetComponent<Topping>().willMatch){
+                    otherTopping.GetComponent<Topping>().row = row;
+                    otherTopping.GetComponent<Topping>().column = column;
+                    row = previousRow;
+                    column = previousColumn;
+                    yield return new WaitForSeconds(.5f);
+                    board.currentState = GameState.move;
+                }
             }
             else
             {
@@ -89,16 +115,16 @@ public class Topping : MonoBehaviour
 
     private void OnMouseDown() 
     {
-        if (board.currentState == GameState.move){
+        //if (board.currentState == GameState.move){
             initialPosition = Input.mousePosition;
-        }
+        //}
     }
     private void OnMouseUp() 
     {   
-        if (board.currentState == GameState.move){
+        //if (board.currentState == GameState.move){
             finalPosition = Input.mousePosition;
             CalculateAngle();
-        }
+        //}
     }
     void CalculateAngle(){
         if(Mathf.Abs(finalPosition.y - initialPosition.y) > swipeResist || Mathf.Abs(finalPosition.x - initialPosition.x) > swipeResist){
