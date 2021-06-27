@@ -3,7 +3,22 @@ guid: b6d3f37cb4ba4034eac40ccbe6002759
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bolo
+    second: {fileID: 2100000, guid: 72fd6e51c0d88a14bb3392b653a149a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cauda
+    second: {fileID: 2100000, guid: 9f1edd3373b6e42428b0eda745b67819, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: prato
+    second: {fileID: 2100000, guid: 666cb313fa758294e9a6b44b20d6cfa6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
