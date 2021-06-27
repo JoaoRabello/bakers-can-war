@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private ScoreManager _scoreManager;
+    [SerializeField] private TimerRenderer _timerRenderer;
+    [SerializeField] private float _timeToEnd;
+    [SerializeField] private int _scoreToWin;
     [SerializeField] private List<Match> _placeholderMatches = new List<Match>();
 
     [SerializeField] private Table _table;
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SetRecipe();
+        StartCoroutine(TimerToEndLevel());
     }
 
     private void Update()
@@ -47,6 +51,27 @@ public class GameManager : MonoBehaviour
     private void SetRecipe()
     {
         _scoreManager.SetCurrentRecipe(_table.CurrentRecipe);
+    }
+
+    private IEnumerator TimerToEndLevel()
+    {
+        float timer = _timeToEnd;
+        
+        while (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            _timerRenderer.UpdateTimerRender(timer);
+            yield return null;
+        }
+
+        if (_scoreManager.CurrentScore >= _scoreToWin)
+        {
+            Debug.Log("Venceu");
+        }
+        else
+        {
+            Debug.Log("Perdeu");
+        }
     }
 
     public void MakeCombo(Combo combo)
