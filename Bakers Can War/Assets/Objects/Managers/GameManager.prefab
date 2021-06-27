@@ -51,6 +51,7 @@ MonoBehaviour:
     Prefab: {fileID: 8296221099130798715, guid: 3698838a7529a244e810a5d72245b58a, type: 3}
     Slices: 3
     CurrentSliceAmount: 0
+  _ingredientNames: []
 --- !u!1 &3383130913202158069
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,10 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreManager: {fileID: 3383130913387962806}
   _timerRenderer: {fileID: 3407638635024556310}
-  _timeToEnd: 7
+  _timeToEnd: 20
   _scoreToWin: 1000
   _placeholderMatches: []
   _table: {fileID: 0}
+  _matchSource: {fileID: 0}
+  _hmmBoloSource: {fileID: 0}
 --- !u!114 &3407638635024556310
 MonoBehaviour:
   m_ObjectHideFlags: 0

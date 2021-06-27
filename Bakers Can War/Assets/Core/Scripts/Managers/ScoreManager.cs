@@ -10,6 +10,9 @@ public class ScoreManager : MonoBehaviour
     {
         {"morango", 100},
         {"kiwi", 150},
+        {"cereja", 200},
+        {"trufa", 250},
+        {"macaron", 300},
     };
 
     private int _currentScore;
@@ -31,8 +34,9 @@ public class ScoreManager : MonoBehaviour
     {
         foreach (var match in combo.Matches)
         {
-            var correctRecipeBonus = _currentRecipe.Ingredients.Contains(match.ToppingName) ? 1.5f : 1;
-            var scoreToAdd = _scoreDictionary[match.ToppingName] * match.ToppingAmount * correctRecipeBonus;
+            var matchName = match.ToppingName.ToLower();
+            var correctRecipeBonus = _currentRecipe.Ingredients.Contains(matchName) ? 1.5f : 1;
+            var scoreToAdd = _scoreDictionary[matchName] * match.ToppingAmount * correctRecipeBonus;
             _currentScore += Mathf.CeilToInt(scoreToAdd);
         }
         _renderer.RenderScore(_currentScore);

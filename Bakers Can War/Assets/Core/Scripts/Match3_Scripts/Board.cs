@@ -147,8 +147,16 @@ public class Board : MonoBehaviour
         }
         ResetMatchedDict();
     }
-    private void SendToScore(string topping, int toppingValue){
-
+    private void SendToScore(string topping, int toppingValue)
+    {
+        List<Match> list = new List<Match>();
+        
+        var match = new Match(topping, toppingValue);
+        list.Add(match);
+        
+        var combo = new Combo(list);
+        
+        GameManager.Instance.MakeCombo(combo);
     }
     private void ResetMatchedDict(){
         matchedDict = new Dictionary<string, int>();
