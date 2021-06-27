@@ -2715,6 +2715,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702622465}
   m_CullTransparentMesh: 1
+--- !u!114 &730549740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5761590798703799014, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+  m_PrefabInstance: {fileID: 3383130913015664537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514602ceb03cfbb448d876911c65e3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &736966304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,6 +4040,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152735457}
   m_CullTransparentMesh: 1
+--- !u!1 &1161322399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161322400}
+  m_Layer: 0
+  m_Name: First Ingredient Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1161322400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161322399}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: -0.5, z: -4.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213979196
 GameObject:
   m_ObjectHideFlags: 0
@@ -6568,8 +6609,20 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _table
+      value: 
+      objectReference: {fileID: 730549740}
+    - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
       propertyPath: _placeholderMatches.Array.size
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _currentRecipe.Ingredients.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _currentRecipe.Ingredients.Array.data[0]
+      value: kiwi
       objectReference: {fileID: 0}
     - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
       propertyPath: _placeholderMatches.Array.data[0].ToppingName
@@ -6581,7 +6634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
       propertyPath: _placeholderMatches.Array.data[0].ToppingAmount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3383130913202158071, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
       propertyPath: _placeholderMatches.Array.data[1].ToppingAmount
@@ -6591,5 +6644,17 @@ PrefabInstance:
       propertyPath: _scoreLabel
       value: 
       objectReference: {fileID: 591394262}
+    - target: {fileID: 5761590798703799014, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _ingredientSpawnTransform
+      value: 
+      objectReference: {fileID: 1161322400}
+    - target: {fileID: 5761590798703799014, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _recipe.Ingredients.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761590798703799014, guid: efea52fcbc4638645aff5810e470feb5, type: 3}
+      propertyPath: _recipe.Ingredients.Array.data[0]
+      value: morango
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efea52fcbc4638645aff5810e470feb5, type: 3}

@@ -13,19 +13,26 @@ public class ScoreManager : MonoBehaviour
     };
 
     private int _currentScore;
+    private Recipe _currentRecipe;
 
     public void ResetScore()
     {
         _currentScore = 0;
         _renderer.RenderScore(_currentScore);
     }
+
+    public void SetCurrentRecipe(Recipe recipe)
+    {
+        _currentRecipe = recipe;
+    }
     
     public void CountScore(Combo combo)
     {
         foreach (var match in combo.Matches)
         {
-            var scoreToAdd = _scoreDictionary[match.ToppingName] * match.ToppingAmount;
-            _currentScore += scoreToAdd;
+            var correctRecipeBonus = _currentRecipe.Ingredients.Contains(match.ToppingName) ? 1.5f : 1;
+            var scoreToAdd = _scoreDictionary[match.ToppingName] * match.ToppingAmount * correctRecipeBonus;
+            _currentScore += Mathf.CeilToInt(scoreToAdd);
         }
         _renderer.RenderScore(_currentScore);
     }
