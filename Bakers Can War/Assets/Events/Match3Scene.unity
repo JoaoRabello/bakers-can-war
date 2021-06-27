@@ -394,8 +394,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c84aa4b8eb9964894eac60b844a41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 1
   height: 7
   width: 6
+  offSet: 20
+  toppingsList:
+  - Morango
+  - Kiwi
+  - Macaron
+  - Cereja
   prefab: {fileID: 3200014065754346743, guid: 2dab3017150d2e047884c43b85d01ac5, type: 3}
   toppings:
   - {fileID: 121778529689739416, guid: d694c35541a397941bb5378de420a51d, type: 3}

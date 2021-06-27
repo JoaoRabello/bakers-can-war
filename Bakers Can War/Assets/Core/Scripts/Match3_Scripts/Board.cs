@@ -113,36 +113,36 @@ public class Board : MonoBehaviour
                 continue;
             }
             else if( matchedDict[toppingsList[i]] == 3 ){
-                SendToScore(matchedDict[toppingsList[i]], 3);
+                SendToScore(toppingsList[i], 3);
             }
             else if( matchedDict[toppingsList[i]] == 4 ){
-                SendToScore(matchedDict[toppingsList[i]], 4);
+                SendToScore(toppingsList[i], 4);
             }
             else if( matchedDict[toppingsList[i]] == 5 ){
-                SendToScore(matchedDict[toppingsList[i]], 5);
+                SendToScore(toppingsList[i], 5);
             }
             else if( matchedDict[toppingsList[i]] == 6 ){
-                SendToScore(matchedDict[toppingsList[i]], 3);
-                SendToScore(matchedDict[toppingsList[i]], 3);
+                SendToScore(toppingsList[i], 3);
+                SendToScore(toppingsList[i], 3);
             }
             else if( matchedDict[toppingsList[i]] == 7 ){
-                SendToScore(matchedDict[toppingsList[i]], 4);
-                SendToScore(matchedDict[toppingsList[i]], 3);
+                SendToScore(toppingsList[i], 4);
+                SendToScore(toppingsList[i], 3);
             }
             else if( matchedDict[toppingsList[i]] == 8 ){
-                SendToScore(matchedDict[toppingsList[i]], 4);
-                SendToScore(matchedDict[toppingsList[i]], 4);
+                SendToScore(toppingsList[i], 4);
+                SendToScore(toppingsList[i], 4);
             }
             else if( matchedDict[toppingsList[i]] == 9 ){
-                SendToScore(matchedDict[toppingsList[i]], 5);
-                SendToScore(matchedDict[toppingsList[i]], 4);
+                SendToScore(toppingsList[i], 5);
+                SendToScore(toppingsList[i], 4);
             }
             else if( matchedDict[toppingsList[i]] == 10 ){
-                SendToScore(matchedDict[toppingsList[i]], 5);
-                SendToScore(matchedDict[toppingsList[i]], 5);
+                SendToScore(toppingsList[i], 5);
+                SendToScore(toppingsList[i], 5);
             }
             else{
-                SendToScore(matchedDict[toppingsList[i]], 0);
+                SendToScore(toppingsList[i], 0);
             }
         }
         ResetMatchedDict();
