@@ -3,7 +3,17 @@ guid: 04e1c9ab7eccda34eb5fd63ee9152d02
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: folha
+    second: {fileID: 2100000, guid: d8cd4eabf9f09914ba936eff1474ed1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: morango
+    second: {fileID: 2100000, guid: 94e7b27806f18b0468073dc10b23cd2d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
