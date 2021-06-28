@@ -9,8 +9,8 @@ public class Ingredient
     public string IngredientName;
     public GameObject Prefab;
     
-    public int Slices;
-    public int CurrentSliceAmount;
+    public float Slices;
+    public float CurrentSliceAmount;
 
     public bool IsComplete()
     {

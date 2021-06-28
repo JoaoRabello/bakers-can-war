@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TimerRenderer _timerRenderer;
     [SerializeField] private float _timeToEnd;
     [SerializeField] private int _scoreToWin;
-    [SerializeField] private List<Match> _placeholderMatches = new List<Match>();
+    [SerializeField] private List<IngredientUIRenderObject> _ingredientRenderObjects = new List<IngredientUIRenderObject>();
 
     [SerializeField] private Table _table;
     [SerializeField] private AudioSource _matchSource;
@@ -37,12 +39,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            var combo = new Combo(_placeholderMatches);
-            
-            MakeCombo(combo);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     var combo = new Combo(_placeholderMatches);
+        //     
+        //     MakeCombo(combo);
+        // }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -96,15 +98,23 @@ public class GameManager : MonoBehaviour
 
     private void AddSliceToIngredient(Match match)
     {
-        if (!_table.IsIngredientInTable(match.ToppingName)) return;
+        var ingredientName = match.ToppingName.ToLower();
+        if (!_table.IsIngredientInTable(ingredientName)) return;
         
-        var ingredient = _table.GetIngredientByName(match.ToppingName);
+        var ingredient = _table.GetIngredientByName(ingredientName);
         ingredient.CurrentSliceAmount++;
 
+        var renderObject = _ingredientRenderObjects.Find(renderUIObject => renderUIObject.IngredientName.Equals(ingredient.IngredientName));
+        renderObject.Image.fillAmount = ingredient.CurrentSliceAmount / ingredient.Slices;
+        
         if (ingredient.IsComplete())
         {
-            Debug.Log($"{ingredient.IngredientName} complete");
             _table.SpawnIngredient(ingredient);
+            
+            var oldColor = renderObject.Image.color;
+            renderObject.Image.color = new Color(oldColor.a, oldColor.b, oldColor.g, 1);
+            
+            renderObject.IngredientAmountLabel.text = $"x{ingredient.CurrentSliceAmount}";
         }
     }
 
@@ -112,4 +122,12 @@ public class GameManager : MonoBehaviour
     {
         _scoreManager.ResetScore();
     }
+}
+
+[Serializable]
+public class IngredientUIRenderObject
+{
+    public string IngredientName;
+    public Image Image;
+    public TMP_Text IngredientAmountLabel;
 }
